@@ -3,22 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
 </head>
 <body>
+
     <form enctype="multipart/form-data">
-        <input type="file" id="js-input" multiple>
-        <label for="js-input" style="background: blue; width: 500px; height: 500px; display: block;"></label>
-        <div data-file-input="#js-input"></div>
+        <div id="uploader">
+
+            <input type="file" accept="image/*,.docx" multiple data-input>
+            
+            <div data-drag>Drag</div>
+
+            <div data-files></div>
+
+            <template data-file-template>
+                <div class="file">
+                    <div data-filename></div>
+                    <a target="_blank" data-url>Url</a>
+                    <div data-delete>Delete</div>
+                </div>
+            </template>
+
+        </div>
     </form>
+
 </body>
-<script src="files.js"></script>
-<script>
-    new Uploader({
-        selector: "#js-input",
-        anyAllowed: true,
-        // allowedKinds: ["image"],
-        uploadedFileElementHtml: "<div style='border: 1px solid black; width: fit-content;'><p data-filename></p><a target='_blank' data-preview>preview</a><a data-delete>Удалить</a></div>",
-    }).createFakeFiles([['test1.png', 'https://google.com'], ['ttt.jpeg', 'https://google.com'], ['1234', 'https://google.com']]);
+
+<script type="module">
+    import { FilesHTMLMapper } from "./js/mapper.js";
+
+    var mapper = new FilesHTMLMapper("#uploader");
+    mapper.addFakeCommonFile({
+        name: "test.hmtl",
+        url: "https://google.com"
+    })
+    mapper.addFakeCommonFile({
+        name: "test2.hmtl",
+        url: "https://yandex.ru"
+    })
 </script>
+
 </html>

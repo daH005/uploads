@@ -1,0 +1,28 @@
+[data-drag] {
+	padding: 100px;
+	margin: 20px;
+	border: 1px solid black;
+	width: fit-content;
+}
+
+.file {
+	display: flex;
+	border: 1px solid gray;
+	width: fit-content;
+	margin: 10px;
+}
+
+.file * {
+	margin: 10px;
+}
+
+.file [data-filename] {
+}
+
+.file [data-url] {
+}
+
+.file [data-delete] {
+	cursor: pointer;
+	color: red;
+}
