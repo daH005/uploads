@@ -34,7 +34,7 @@ export class FilesHTMLManager {
     public constructor(wrapElSelector: string) {
         this._wrapEl = document.querySelector(wrapElSelector);
         this._initChildEls();
-        this._accept = this._inputEl.getAttribute("accept");
+        this._accept = this._inputEl.getAttribute("accept") ?? "";
 
         this._initInputEvent();
         if (this._dragEl) {

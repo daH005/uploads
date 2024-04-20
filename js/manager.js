@@ -12,9 +12,10 @@ var ChildElAttrName;
 })(ChildElAttrName || (ChildElAttrName = {}));
 export class FilesHTMLManager {
     constructor(wrapElSelector) {
+        var _a;
         this._wrapEl = document.querySelector(wrapElSelector);
         this._initChildEls();
-        this._accept = this._inputEl.getAttribute("accept");
+        this._accept = (_a = this._inputEl.getAttribute("accept")) !== null && _a !== void 0 ? _a : "";
         this._initInputEvent();
         if (this._dragEl) {
             this._initDragEvents();
