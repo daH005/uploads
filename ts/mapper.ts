@@ -74,16 +74,19 @@ export class FilesHTMLMapper {
         for (let i = 0; i < this._inputEl.files.length; i++) {
             this._curFile = this._inputEl.files[i];
             this._curUrl = URL.createObjectURL(this._curFile);
-            this._handleCurFile();
+            this._handleCurFileWithAcceptChecking();
         }
         this._updateInputFiles();
     }
 
-    private _handleCurFile(): void {
+    private _handleCurFileWithAcceptChecking(): void {
         if (!fileIsValidByAccept(this._curFile, this._accept)) {
             return;
         }
+        this._handleCurFile();
+    }
 
+    private _handleCurFile(): void {
         if (!this._createdFilenames.has(this._curFile.name)) {
             this._createElForCurFile();
             this._createdFilenames.add(this._curFile.name);
