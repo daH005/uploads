@@ -29,7 +29,5 @@ function _filenameIsValidByExtension(filename, extension) {
     return filename.endsWith(extension);
 }
 function _fileTypeIsValidByRegex(fileType, regex) {
-    console.log(fileType, regex);
-    console.log(fileType.match(regex));
     return Boolean(fileType.match(regex));
 }
