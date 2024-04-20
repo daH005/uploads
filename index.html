@@ -29,16 +29,17 @@
 
 </body>
 
+<script src="./js/_tests/testMapper.js" type="module"></script>
 <script type="module">
     import { FilesHTMLMapper } from "./js/mapper.js";
 
     var mapper = new FilesHTMLMapper("#uploader");
     mapper.addFakeCommonFile({
-        name: "test.hmtl",
+        name: "test.html",
         url: "https://google.com"
     })
     mapper.addFakeCommonFile({
-        name: "test2.hmtl",
+        name: "test2.png",
         url: "https://yandex.ru"
     })
 </script>
