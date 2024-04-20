@@ -1,5 +1,5 @@
 import { FilesStorage, FakeFileType } from "./storage.js";
-import { makeHtmlAttrNameSelector, createEmptyFile } from "./utils.js";
+import { makeHtmlAttrNameSelector, createEmptyFile, fileIsValidByAccept } from "./utils.js";
 
 interface FakeCommonFileData {
     name: string,
@@ -23,6 +23,7 @@ export class FilesHTMLMapper {
     private _dragEl?: HTMLElement;
     private _filesContainerEl: HTMLElement;
     private _fileTempEl: HTMLTemplateElement;
+    private _accept: string;
 
     private _storage: FilesStorage;
     private _createdFilenames: Set<string>;
@@ -33,6 +34,8 @@ export class FilesHTMLMapper {
     public constructor(wrapElSelector: string) {
         this._wrapEl = document.querySelector(wrapElSelector);
         this._initChildEls();
+        this._accept = this._inputEl.getAttribute("accept");
+
         this._initInputEvent();
         if (this._dragEl) {
             this._initDragEvents();
@@ -77,6 +80,10 @@ export class FilesHTMLMapper {
     }
 
     private _handleCurFile(): void {
+        if (!fileIsValidByAccept(this._curFile, this._accept)) {
+            return;
+        }
+
         if (!this._createdFilenames.has(this._curFile.name)) {
             this._createElForCurFile();
             this._createdFilenames.add(this._curFile.name);

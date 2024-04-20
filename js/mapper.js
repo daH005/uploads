@@ -1,5 +1,5 @@
 import { FilesStorage, FakeFileType } from "./storage.js";
-import { makeHtmlAttrNameSelector, createEmptyFile } from "./utils.js";
+import { makeHtmlAttrNameSelector, createEmptyFile, fileIsValidByAccept } from "./utils.js";
 var ChildElAttrName;
 (function (ChildElAttrName) {
     ChildElAttrName["INPUT"] = "data-input";
@@ -14,6 +14,7 @@ export class FilesHTMLMapper {
     constructor(wrapElSelector) {
         this._wrapEl = document.querySelector(wrapElSelector);
         this._initChildEls();
+        this._accept = this._inputEl.getAttribute("accept");
         this._initInputEvent();
         if (this._dragEl) {
             this._initDragEvents();
@@ -51,6 +52,9 @@ export class FilesHTMLMapper {
         this._updateInputFiles();
     }
     _handleCurFile() {
+        if (!fileIsValidByAccept(this._curFile, this._accept)) {
+            return;
+        }
         if (!this._createdFilenames.has(this._curFile.name)) {
             this._createElForCurFile();
             this._createdFilenames.add(this._curFile.name);
