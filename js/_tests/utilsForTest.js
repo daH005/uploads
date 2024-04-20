@@ -1,12 +1,12 @@
-import { FilesHTMLMapper } from "../mapper.js";
+import { FilesHTMLManager } from "../manager.js";
 import { ACCEPT } from "./dataForTest.js";
 export var inputEl = document.querySelector("#uploader [data-input]");
 inputEl.setAttribute("accept", ACCEPT);
 var filesEl = document.querySelector("#uploader [data-files]");
-export var mapper = new FilesHTMLMapper("#uploader");
+export var manager = new FilesHTMLManager("#uploader");
 export function inputFakeFiles(data) {
     for (let i in data) {
-        mapper.addFakeCommonFile(data[i]);
+        manager.addFakeCommonFile(data[i]);
     }
 }
 export function inputFiles(files) {

@@ -16,7 +16,7 @@ enum ChildElAttrName {
     FILE_DELETE = "data-delete",
 }
 
-export class FilesHTMLMapper {
+export class FilesHTMLManager {
 
     private _wrapEl: HTMLElement;
     private _inputEl: HTMLInputElement;

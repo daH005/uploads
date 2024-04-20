@@ -1,6 +1,6 @@
 import { createEmptyFile } from "../utils.js";
 import { FakeFileType } from "../storage.js";
-import { FakeCommonFileData } from "../mapper.js";
+import { FakeCommonFileData } from "../manager.js";
 
 export const ACCEPT: string = "image/*,.docx";
 export const URL: string = "https://google.com";
