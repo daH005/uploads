@@ -8,29 +8,29 @@ var filesEl: HTMLElement = document.querySelector("#uploader [data-files]");
 export var manager = new FilesHTMLManager("#uploader");
 
 export function inputFakeFiles(data: FakeCommonFileData[]): void {
-	for (let i in data) {
-		manager.addFakeCommonFile(data[i]);
-	}
+    for (let i in data) {
+        manager.addFakeCommonFile(data[i]);
+    }
 }
 
 export function inputFiles(files: File[]): void {
-	let event = new InputEvent("input");
+    let event = new InputEvent("input");
 
-	let dataTransfer = new DataTransfer();
-	for (let i in files) {
-		dataTransfer.items.add(files[i]);
-	}
-	
-	inputEl.files = dataTransfer.files;
-	inputEl.dispatchEvent(event);
+    let dataTransfer = new DataTransfer();
+    for (let i in files) {
+        dataTransfer.items.add(files[i]);
+    }
+    
+    inputEl.files = dataTransfer.files;
+    inputEl.dispatchEvent(event);
 }
 
 export function deleteFiles(filenames: string[]): void {
-	let child: Node;
-	for (let i in filenames) {
-		child = _getNodeByXpath(filesEl, `./div[contains(.,"${filenames[i]}")]//div[@data-delete]`);
-		child.dispatchEvent(new MouseEvent("click"));
-	}
+    let child: Node;
+    for (let i in filenames) {
+        child = _getNodeByXpath(filesEl, `./div[contains(.,"${filenames[i]}")]//div[@data-delete]`);
+        child.dispatchEvent(new MouseEvent("click"));
+    }
 }
 
 function _getNodeByXpath(parentEl: HTMLElement, xpath: string): Node {
@@ -39,22 +39,22 @@ function _getNodeByXpath(parentEl: HTMLElement, xpath: string): Node {
 
 
 export function checkFiles(filenamesAndtypes: Object): void {
-	let expectedLength: number = Object.keys(filenamesAndtypes).length;
-	let realLength: number = inputEl.files.length;
-	if (expectedLength != realLength) {
-		throw `Test failed by length: expected ${expectedLength} but got ${realLength}!`;
-	}
+    let expectedLength: number = Object.keys(filenamesAndtypes).length;
+    let realLength: number = inputEl.files.length;
+    if (expectedLength != realLength) {
+        throw `Test failed by length: expected ${expectedLength} but got ${realLength}!`;
+    }
 
-	let curFile: File;
-	for (let i = 0; i < inputEl.files.length; i++) {
-		curFile = inputEl.files[i];
+    let curFile: File;
+    for (let i = 0; i < inputEl.files.length; i++) {
+        curFile = inputEl.files[i];
 
-		if (!(curFile.name in filenamesAndtypes)) {
-			throw `Test failed by filename: ${curFile.name} filename not found!`;
-		}
+        if (!(curFile.name in filenamesAndtypes)) {
+            throw `Test failed by filename: ${curFile.name} filename not found!`;
+        }
 
-		if (filenamesAndtypes[curFile.name] != curFile.type) {
-			throw `Test failed by file type: expected ${filenamesAndtypes[curFile.name]} but got ${curFile.type}!`;
-		}
-	}
+        if (filenamesAndtypes[curFile.name] != curFile.type) {
+            throw `Test failed by file type: expected ${filenamesAndtypes[curFile.name]} but got ${curFile.type}!`;
+        }
+    }
 }
