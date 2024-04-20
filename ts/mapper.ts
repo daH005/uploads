@@ -1,7 +1,7 @@
 import { FilesStorage, FakeFileType } from "./storage.js";
 import { makeHtmlAttrNameSelector, createEmptyFile, fileIsValidByAccept } from "./utils.js";
 
-interface FakeCommonFileData {
+export interface FakeCommonFileData {
     name: string,
     url: string,
 }

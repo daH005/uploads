@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Test</title>
     <link href="./style.css" rel="stylesheet">
 </head>
 <body>
@@ -10,6 +10,7 @@
     <form enctype="multipart/form-data">
         <div id="uploader">
 
+            <!-- accept overwrite in `_tests.testMapper` -->
             <input type="file" accept="image/*,.docx" multiple data-input>
             
             <div data-drag>Drag</div>
@@ -28,20 +29,6 @@
     </form>
 
 </body>
-
 <script src="./js/_tests/testMapper.js" type="module"></script>
-<script type="module">
-    import { FilesHTMLMapper } from "./js/mapper.js";
-
-    var mapper = new FilesHTMLMapper("#uploader");
-    mapper.addFakeCommonFile({
-        name: "test.html",
-        url: "https://google.com"
-    })
-    mapper.addFakeCommonFile({
-        name: "test2.png",
-        url: "https://yandex.ru"
-    })
-</script>
 
 </html>
