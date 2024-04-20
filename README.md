@@ -13,7 +13,7 @@ I took care of:
 Usage
 -------------------------
 1. Take `js` folder
-2. Make following template and plug `js/manager.js` as module:
+2. Make following template and js code:
 ```html
 <div id="uploader">
     <input type="file" accept="image/*,.docx" multiple data-input>
@@ -30,7 +30,9 @@ Usage
 
 </div>
 
-<script src="./js/manager.js" type="module">
+<script type="module">
+
+    import { FilesHTMLManager } from "./js/manager.js";
 
     var manager = new FilesHTMLManager("#uploader");
     // that's all, manager is working
