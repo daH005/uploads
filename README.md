@@ -44,4 +44,4 @@ Usage
 </script>
 
 ```
-3. Files for deleting have `fake_to_delete` file type for backend processing
+3. Files for deleting from the server have `fake_to_delete` file type
