@@ -9,7 +9,7 @@
 
     <form id="uploader" enctype="multipart/form-data" method="post" action="/form">
 
-        <input type="file" name="files" multiple data-input>
+        <input type="file" name="files" multiple accept="image/*" data-input>
 
         <div data-drag>Drag</div>
 
@@ -17,8 +17,8 @@
 
         <template data-file-template>
             <div class="file">
+                <img data-url>
                 <div data-filename></div>
-                <a target="_blank" data-url>Url</a>
                 <div data-delete>Delete</div>
             </div>
         </template>

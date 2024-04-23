@@ -30,3 +30,7 @@
 [data-server-filenames-to-delete] {
     display: none;
 }
+
+img[data-url] {
+    max-width: 100px;
+}
