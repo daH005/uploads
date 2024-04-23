@@ -1,55 +1,34 @@
-import { createEmptyFile } from "./utils.js";
+export class InputFilesStorage {
 
-export enum FakeFileType {
-    // all enum members must be in lower case for file.type
-    COMMON = "fake_common",
-    TO_DELETE = "fake_to_delete",
-}
+    protected _inputEl: HTMLInputElement;
+    protected _map: Map<string, File>;
 
-export class FilesStorage {
-
-    private _files: Map<string, File>;
-    private _curFile: File;
-
-    public constructor() {
-        this._files = new Map();
+    public constructor(inputEl: HTMLInputElement) {
+        this._inputEl = inputEl;
+        this._map = new Map();
     }
 
-    public update(file: File): void {
-        this._files.set(file.name, file);
+    public addFile(file: File): void {
+        this._map.set(file.name, file);
     }
 
-    public delete(filename: string): void {
-        this._curFile = this._files.get(filename);
-        if (this._curFileAlreadyExistOnServer()) {
-            this._files.set(filename, this._createFakeFileToDeleteOnServer());
-        } else {
-            this._files.delete(filename);
+    public deleteFile(filename: string): void {
+        if (this._map.has(filename)) {
+            this._map.delete(filename);
         }
     }
 
-    public has(filename: string): boolean {
-        return this._files.has(filename);
+    public fileExist(filename: string): boolean {
+        return this._map.has(filename);
     }
 
-    private _curFileAlreadyExistOnServer(): boolean {
-        return this._curFile.type == FakeFileType.COMMON;
-    }
-
-    private _createFakeFileToDeleteOnServer(): File {
-        return createEmptyFile(this._curFile.name, FakeFileType.TO_DELETE);
-    }
-
-    public prepareFileListForInput(): FileList {
-        let transfer: DataTransfer = new DataTransfer();
-        this._files.forEach((file: File): void => {
-            this._curFile = file;
-            if (!this._curFileAlreadyExistOnServer()) {
-                transfer.items.add(file);
-            }
+    public updateInput(): void {
+        let dataTransfer: DataTransfer = new DataTransfer();
+        this._map.forEach((file: File): void => {
+            dataTransfer.items.add(file);
         });
-        
-        return transfer.files;
+
+        this._inputEl.files = dataTransfer.files;
     }
 
 }

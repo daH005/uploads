@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTMLUploadingUtils</title>
+    <link href="./style.css" rel="stylesheet">
+</head>
+<body>
+
+    <form enctype="multipart/form-data">
+        <div id="uploader">
+
+            <input type="file" multiple data-input>
+            
+            <div data-drag>Drag</div>
+
+            <div data-files></div>
+
+            <template data-file-template>
+                <div class="file">
+                    <div data-filename></div>
+                    <a target="_blank" data-url>Url</a>
+                    <div data-delete>Delete</div>
+                </div>
+            </template>
+
+            <div data-server-filenames-to-delete></div>
+
+            <button>Отправка</button>
+
+        </div>
+
+    </form>
+
+</body>
+
+<script type="module">
+    
+    import { addDragUploadingForInput } from "./js/drag.js";
+    import { noOverwriteFilesInInput } from "./js/noOverwrite.js";
+    import { InputFilesStorage } from "./js/storage.js";
+    import { DefaultInputFilesMapper, NoOverwriteInputFilesMapper } from "./js/htmlMapping.js";
+    import { makeArrayInputs } from "./js/arrayInputs.js";
+
+    var inputEl = document.querySelector("#uploader [data-input]");
+    var filesEl = document.querySelector("#uploader [data-files]");
+    var fileTempEl = document.querySelector("#uploader [data-file-template]");
+    var dragEl = document.querySelector("#uploader [data-drag]");
+    var storage = new InputFilesStorage(inputEl);
+
+    addDragUploadingForInput(inputEl, dragEl);
+    noOverwriteFilesInInput(inputEl, storage);
+
+    var mapper = new NoOverwriteInputFilesMapper(inputEl, filesEl, fileTempEl, storage);
+    // var mapper = new DefaultInputFilesMapper(inputEl, filesEl, fileTempEl);
+    mapper.addServerFile("test.index", "https://google.com");
+    mapper.addServerFile("test1.png", "https://google.com");
+    mapper.addServerFile("test2.docx", "https://google.com");
+
+    var serverFilenamesToDeleteEl = document.querySelector("#uploader [data-server-filenames-to-delete]");
+    var buttonEl = document.querySelector("#uploader button");
+    buttonEl.onclick = (e) => {
+        serverFilenamesToDeleteEl.innerHTML = "";
+        makeArrayInputs(serverFilenamesToDeleteEl, "filenameToDelete", mapper.getServerFilenamesToDelete());
+        console.log(mapper.getServerFilenamesToDelete());
+        e.preventDefault();
+    }
+
+</script>
+
+</html>
