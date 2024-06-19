@@ -1,5 +1,5 @@
 ## Few words about this project
-`HTMLUploadingUtils` - is set of JS(TS)-modules for HTML deciding following problems:
+`HTMLUploadingUtils` - is set of JS(TS)-modules for HTML deciding the following problems:
 - Uploading files by multiple parts (without overwriting files with each new selection)
 - Mapping uploaded files in HTML
 - Deleting uploaded files with HTML
