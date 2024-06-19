@@ -9,6 +9,9 @@ I took care of:
 - Mapping and deleting files that already exist on the server
 - Validation of files by `accept` attribute of `input` element (by default it does not work for drag-and-drop)
 
+## How to start usage
+Download the `js` folder and follow the next steps below
+
 ## Usage
 ### 1. Drag-and-drop uploading:
 HTML:
