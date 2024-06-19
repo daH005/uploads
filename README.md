@@ -26,7 +26,7 @@ var dragEl = document.querySelector("[data-drag]");
 addDragUploadingForInput(inputEl, dragEl);
 ```
 
-### 2. Uploading by multiple parts without overwriting files with each new selection:
+### 2. Uploading in parts without overwriting files with each new selection:
 HTML:
 ```html
 <input type="file" multiple data-input>
