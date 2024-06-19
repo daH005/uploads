@@ -1,12 +1,12 @@
 ## Few words about this project
 `HTMLUploadingUtils` - is set of JS(TS)-modules for HTML deciding the following problems:
-- Uploading files by multiple parts (without overwriting files with each new selection)
+- Uploading files in parts (without overwriting files with each new selection)
 - Mapping uploaded files in HTML
 - Deleting uploaded files with HTML
 - Drag-and-drop uploading
 
 I took care of:
-- Mapping and deleting files already exist on the server
+- Mapping and deleting files that already exist on the server
 - Validation of files by `accept` attribute of `input` element (by default it does not work for drag-and-drop)
 
 ## Usage
@@ -82,7 +82,7 @@ noOverwriteFilesInInput(inputEl, storage);
 var mapper = new NoOverwriteInputFilesMapper(inputEl, filesEl, fileTempEl, storage);
 ```
 
-### 3.3. You can to add files already exist on the server:
+### 3.3. You can add files that already exist on the server:
 ```js
 ...
 mapper.addServerFile("filename.extenstion", "https://url.com");
@@ -90,13 +90,13 @@ mapper.addServerFile("filename.extenstion", "https://url.com");
 ...
 ```
 
-### 3.4. You can to get files for deleting on the server:
+### 3.4. You can get files to delete on the server:
 ```js
 ...
 mapper.getServerFilenamesToDelete();
 ```
 
-### 3.5. You can make array of inputs for form for deleting files on the server:
+### 3.5. After 3.4. you can make an array of inputs in the form:
 ```js
 ...
 import { makeArrayInputs } from "./js/arrayInputs.js";
