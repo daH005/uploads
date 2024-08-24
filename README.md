@@ -1,6 +1,6 @@
-## Few words about this project
-`HTMLUploadingUtils` - is set of JS(TS)-modules for HTML deciding the following problems:
-- Uploading files in parts (without overwriting files with each new selection)
+## A few words about this project
+`HTMLUploadingUtils` - is a JS-library for HTML deciding the following problems:
+- Uploading files in parts (without overwriting files with an each new selection)
 - Mapping uploaded files in HTML
 - Deleting uploaded files with HTML
 - Drag-and-drop uploading
@@ -29,7 +29,7 @@ var dragEl = document.querySelector("[data-drag]");
 addDragUploadingForInput(inputEl, dragEl);
 ```
 
-### 2. Uploading in parts without overwriting files with each new selection:
+### 2. Uploading in parts without overwriting files with an each new selection:
 HTML:
 ```html
 <input type="file" multiple data-input>
@@ -99,7 +99,7 @@ mapper.addServerFile("filename.extenstion", "https://url.com");
 mapper.getServerFilenamesToDelete();
 ```
 
-### 3.5. After 3.4. you can make an array of inputs in the form:
+### 3.5. After 3.4. you can make an array of inputs in a form:
 ```js
 ...
 import { makeArrayInputs } from "./js/arrayInputs.js";
