@@ -1,6 +1,6 @@
 ## A few words about this project
-`HTMLUploadingUtils` - is a JS-library for HTML deciding the following problems:
-- Uploading files in parts (without overwriting files with an each new selection)
+`UploadWithoutOverwriting` - is a JS-library for HTML deciding the following problems:
+- Uploading files in parts (without overwriting files with an each new selection) - `main problem`
 - Mapping uploaded files in HTML
 - Deleting uploaded files with HTML
 - Drag-and-drop uploading
@@ -13,23 +13,7 @@ I took care of:
 Download the `js` folder and follow the next steps below
 
 ## Usage
-### 1. Drag-and-drop uploading:
-HTML:
-```html
-<input type="file" multiple data-input>
-<div data-drag>Drag</div>
-```
-JS:
-```js
-import { addDragUploadingForInput } from "./js/drag.js";
-
-var inputEl = document.querySelector("[data-input]");
-var dragEl = document.querySelector("[data-drag]");
-
-addDragUploadingForInput(inputEl, dragEl);
-```
-
-### 2. Uploading in parts without overwriting files with an each new selection:
+### 1. Uploading in parts without overwriting files with an each new selection:
 HTML:
 ```html
 <input type="file" multiple data-input>
@@ -45,8 +29,8 @@ var storage = new InputFilesStorage(inputEl);
 noOverwriteFilesInInput(inputEl, storage);
 ```
 
-### 3. Mapping files in HTML:
-### 3.1. Default input with overwriting:
+### 2. Mapping files in HTML:
+### 2.1. Default input with overwriting:
 HTML:
 ```html
 <input type="file" multiple data-input>
@@ -72,7 +56,7 @@ var fileTempEl = document.querySelector("[data-file-template]");
 var mapper = new DefaultInputFilesMapper(inputEl, filesEl, fileTempEl);
 ```
 
-### 3.2. Input without overwriting:
+### 2.2. Input without overwriting:
 ```js
 import { NoOverwriteInputFilesMapper } from "./js/htmlMapping.js";
 import { InputFilesStorage } from "./js/storage.js";
@@ -85,7 +69,7 @@ noOverwriteFilesInInput(inputEl, storage);
 var mapper = new NoOverwriteInputFilesMapper(inputEl, filesEl, fileTempEl, storage);
 ```
 
-### 3.3. You can add files that already exist on the server:
+### 2.3. You can add files that already exist on the server:
 ```js
 ...
 mapper.addServerFile("filename.extenstion", "https://url.com");
@@ -93,13 +77,13 @@ mapper.addServerFile("filename.extenstion", "https://url.com");
 ...
 ```
 
-### 3.4. You can get files to delete on the server:
+### 2.4. You can get files to delete on the server:
 ```js
 ...
 mapper.getServerFilenamesToDelete();
 ```
 
-### 3.5. After 3.4. you can make an array of inputs in a form:
+### 2.5. After 3.4. you can make an array of inputs in a form:
 ```js
 ...
 import { makeArrayInputs } from "./js/arrayInputs.js";
@@ -107,4 +91,20 @@ import { makeArrayInputs } from "./js/arrayInputs.js";
 var serverFilenamesToDeleteEl = ...
 var mapper = ...
 makeArrayInputs(serverFilenamesToDeleteEl, "filenameToDelete", mapper.getServerFilenamesToDelete());
+```
+
+### 3. Drag-and-drop uploading:
+HTML:
+```html
+<input type="file" multiple data-input>
+<div data-drag>Drag</div>
+```
+JS:
+```js
+import { addDragUploadingForInput } from "./js/drag.js";
+
+var inputEl = document.querySelector("[data-input]");
+var dragEl = document.querySelector("[data-drag]");
+
+addDragUploadingForInput(inputEl, dragEl);
 ```
