@@ -1,5 +1,5 @@
-## A few words about this project
-`UploadWithoutOverwriting` - is a JS-library for HTML deciding the following problems:
+## About this project
+`uploads` - is a JS-library for HTML deciding the following problems:
 - Uploading files in parts (without overwriting files with an each new selection) - `main problem`
 - Mapping uploaded files in HTML
 - Deleting uploaded files with HTML
@@ -10,7 +10,12 @@ I took care of:
 - Validation of files by `accept` attribute of `input` element (by default it does not work for drag-and-drop)
 
 ## How to start usage
-Download the `js` folder and follow the next steps below
+1. Clone
+2. Execute this in `ts` folder:
+```sh
+tsc
+```
+2. Use `js` folder scripts in HTML
 
 ## Usage
 ### 1. Uploading in parts without overwriting files with an each new selection:
