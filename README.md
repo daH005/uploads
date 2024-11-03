@@ -60,12 +60,10 @@ var mapper = new DefaultInputFilesMapper(inputEl, filesEl, fileTempEl);
 ```js
 import { NoOverwriteInputFilesMapper } from "./js/htmlMapping.js";
 import { InputFilesStorage } from "./js/storage.js";
-import { noOverwriteFilesInInput } from "./js/noOverwrite.js";
 
 ...
 var storage = new InputFilesStorage(inputEl);
 
-noOverwriteFilesInInput(inputEl, storage);
 var mapper = new NoOverwriteInputFilesMapper(inputEl, filesEl, fileTempEl, storage);
 ```
 
