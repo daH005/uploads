@@ -1,5 +1,6 @@
 import { makeHtmlAttrNameSelector } from "./htmlAttrs.js";
 import { InputFilesStorage } from "./storage.js";
+import { noOverwriteFilesInInput } from "./noOverwrite.js";
 
 enum FileElAttrName {
     FILENAME = "data-filename",
@@ -123,6 +124,7 @@ export class NoOverwriteInputFilesMapper extends AbstractInputFilesMapper {
     public constructor(inputEl: HTMLInputElement, filesEl: HTMLElement, fileTempEl: HTMLTemplateElement, storage: InputFilesStorage) {
         super(inputEl, filesEl, fileTempEl);
         this._storage = storage;
+        noOverwriteFilesInInput(inputEl, storage);
     }
 
     protected _addFileEl(filename: string, url: string, isServerFile: boolean=false): void {
