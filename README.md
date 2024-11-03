@@ -9,12 +9,12 @@ I took care of:
 - Mapping and deleting files that already exist on the server
 - Validation of files by `accept` attribute of `input` element (by default it does not work for drag-and-drop)
 
+## Demo
+https://github.com/user-attachments/assets/55ea911c-ac1e-4872-814a-993bc4356160
+
 ## How to start usage
 1. Clone
-2. Execute this in `ts` folder:
-```sh
-tsc
-```
+2. Execute `tsc` in `ts` folder  (`tsc` can be installed using `npm install -g typescript`):
 2. Use `js` folder scripts in HTML
 
 ## Usage
