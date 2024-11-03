@@ -1,5 +1,5 @@
 ## About this project
-`UploadWithoutOverwriting` - is a JS-library for HTML deciding the following problems:
+`uploads` - is a JS-library for HTML deciding the following problems:
 - Uploading files in parts (without overwriting files with an each new selection) - `main problem`
 - Mapping uploaded files in HTML
 - Deleting uploaded files with HTML
