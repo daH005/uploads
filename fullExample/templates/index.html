@@ -34,7 +34,6 @@
 <script type="module">
 
     import { addDragUploadingForInput } from "/js/drag.js";
-    import { noOverwriteFilesInInput } from "/js/noOverwrite.js";
     import { InputFilesStorage } from "/js/storage.js";
     import { NoOverwriteInputFilesMapper } from "/js/htmlMapping.js";
     import { makeArrayInputs } from "/js/arrayInputs.js";
@@ -47,7 +46,6 @@
     var serverFilenamesToDeleteEl = document.querySelector("#uploader [data-server-filenames-to-delete]");
 
     addDragUploadingForInput(inputEl, dragEl);
-    noOverwriteFilesInInput(inputEl, storage);
 
     var mapper = new NoOverwriteInputFilesMapper(inputEl, filesEl, fileTempEl, storage);
 
