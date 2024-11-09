@@ -31,6 +31,6 @@
     display: none;
 }
 
-img[data-url] {
+img[data-image] {
     max-width: 100px;
 }

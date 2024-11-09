@@ -4,6 +4,7 @@ import { noOverwriteFilesInInput } from "./noOverwrite.js";
 
 enum FileElAttrName {
     FILENAME = "data-filename",
+    FILE_IMAGE = "data-image",
     FILE_URL = "data-url",
     FILE_DELETE = "data-delete",
 }
@@ -54,19 +55,35 @@ abstract class AbstractInputFilesMapper {
         this._filesEl.append(node);
 
         let el = this._filesEl.lastElementChild;
-        el.querySelector(makeHtmlAttrNameSelector(FileElAttrName.FILENAME)).textContent = filename;
-        el.querySelector(makeHtmlAttrNameSelector(FileElAttrName.FILE_URL)).setAttribute("href", url);
-        el.querySelector(makeHtmlAttrNameSelector(FileElAttrName.FILE_URL)).setAttribute("src", url);
-        el.querySelector(makeHtmlAttrNameSelector(FileElAttrName.FILE_DELETE)).addEventListener("click", () => {
-            el.remove();
+        
+        let filenameEl = el.querySelector(makeHtmlAttrNameSelector(FileElAttrName.FILENAME));
+        if (filenameEl) {
+            filenameEl.textContent = filename;
+        }
+        
+        let urlEl = el.querySelector(makeHtmlAttrNameSelector(FileElAttrName.FILE_URL));
+        if (urlEl) {
+            urlEl.setAttribute("href", url);
+        }
+        
+        let imageEl = el.querySelector(makeHtmlAttrNameSelector(FileElAttrName.FILE_IMAGE));
+        if (imageEl) {
+            imageEl.setAttribute("src", url);
+        }
+        
+        let deleteEl = el.querySelector(makeHtmlAttrNameSelector(FileElAttrName.FILE_DELETE));
+        if (deleteEl) {
+            deleteEl.addEventListener("click", () => {
+                el.remove();
 
-            if (isServerFile) {
-                this._deleteServerFile(filename);
-            } else {
-                this._deleteFile(filename);
-            }
+                if (isServerFile) {
+                    this._deleteServerFile(filename);
+                } else {
+                    this._deleteFile(filename);
+                }
 
-        });
+            });
+        }
 
         this._fileEls.set(filename, el);
     }
