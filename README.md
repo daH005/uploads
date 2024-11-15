@@ -14,8 +14,8 @@ https://github.com/user-attachments/assets/55ea911c-ac1e-4872-814a-993bc4356160
 
 ## How to start usage
 1. Clone
-2. Execute `tsc` in `ts` folder  (`tsc` can be installed using `npm install -g typescript`):
-2. Use `js` folder scripts in HTML
+2. Execute `tsc`  (`tsc` can be installed using `npm install -g typescript`):
+2. Use the prepared scripts in HTML
 
 ## Usage
 ### 1. Uploading in parts without overwriting files with an each new selection:
