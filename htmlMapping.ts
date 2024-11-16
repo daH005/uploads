@@ -55,22 +55,26 @@ abstract class AbstractInputFilesMapper {
         this._filesEl.append(node);
 
         let el = this._filesEl.lastElementChild;
-        
+
         let filenameEl = el.querySelector(makeHtmlAttrNameSelector(FileElAttrName.FILENAME));
         if (filenameEl) {
             filenameEl.textContent = filename;
         }
-        
+
         let urlEl = el.querySelector(makeHtmlAttrNameSelector(FileElAttrName.FILE_URL));
         if (urlEl) {
             urlEl.setAttribute("href", url);
         }
-        
-        let imageEl = el.querySelector(makeHtmlAttrNameSelector(FileElAttrName.FILE_IMAGE));
+
+        let imageEl: HTMLImageElement = <HTMLImageElement>el.querySelector(makeHtmlAttrNameSelector(FileElAttrName.FILE_IMAGE));
         if (imageEl) {
             imageEl.setAttribute("src", url);
+            imageEl.onerror = () => {
+                imageEl.removeAttribute("src");
+                imageEl.style.display = "none";
+            }
         }
-        
+
         let deleteEl = el.querySelector(makeHtmlAttrNameSelector(FileElAttrName.FILE_DELETE));
         if (deleteEl) {
             deleteEl.addEventListener("click", () => {
@@ -102,6 +106,14 @@ abstract class AbstractInputFilesMapper {
 
     protected getServerFilenamesToDelete(): Set<string> {
         return new Set(this._serverFilenamesToDelete);
+    }
+
+    public clear(): void {
+        this._serverFilenames.clear();
+        this._serverFilenamesToDelete.clear();
+        this._fileEls.clear();
+        this._filesEl.innerHTML = "";
+        this._inputEl.value = "";
     }
 
 }
@@ -138,8 +150,12 @@ export class NoOverwriteInputFilesMapper extends AbstractInputFilesMapper {
 
     protected _storage: InputFilesStorage;
 
-    public constructor(inputEl: HTMLInputElement, filesEl: HTMLElement, fileTempEl: HTMLTemplateElement, storage: InputFilesStorage) {
+    public constructor(inputEl: HTMLInputElement, filesEl: HTMLElement, fileTempEl: HTMLTemplateElement, storage: InputFilesStorage | null=null) {
         super(inputEl, filesEl, fileTempEl);
+
+        if (!storage) {
+            storage = new InputFilesStorage(inputEl);
+        }
         this._storage = storage;
         noOverwriteFilesInInput(inputEl, storage);
     }
@@ -154,6 +170,11 @@ export class NoOverwriteInputFilesMapper extends AbstractInputFilesMapper {
     protected _deleteFile(filename: string): void {
         this._storage.deleteFile(filename);
         this._storage.updateInput();
+    }
+
+    public clear(): void {
+        super.clear();
+        this._storage.clear();
     }
 
 }

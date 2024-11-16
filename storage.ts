@@ -31,4 +31,8 @@ export class InputFilesStorage {
         this._inputEl.files = dataTransfer.files;
     }
 
+    public clear(): void {
+        this._map.clear();
+    }
+
 }
