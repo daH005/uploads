@@ -13,11 +13,10 @@ I took care of:
 https://github.com/user-attachments/assets/55ea911c-ac1e-4872-814a-993bc4356160
 
 ## How to start usage
+Download the release you need or:
 1. Clone
 2. Execute `tsc`  (`tsc` can be installed using `npm install -g typescript`):
 2. Use the prepared scripts in HTML
-
-Or download the release you need.
 
 ## Usage
 ### 1. Uploading in parts without overwriting files with an each new selection:
@@ -88,7 +87,7 @@ mapper.addServerFile("filename.extenstion", "https://url.com");
 mapper.getServerFilenamesToDelete();
 ```
 
-### 2.5. After 3.4. you can make an array of inputs in a form:
+### 2.5. After 2.4. you can make an array of inputs in the form:
 ```js
 ...
 import { makeArrayInputs } from "./js/arrayInputs.js";
@@ -96,6 +95,12 @@ import { makeArrayInputs } from "./js/arrayInputs.js";
 var serverFilenamesToDeleteEl = ...
 var mapper = ...
 makeArrayInputs(serverFilenamesToDeleteEl, "filenameToDelete", mapper.getServerFilenamesToDelete());
+```
+
+### 2.6. You can clear the uploaded files and the input:
+```js
+...
+mapper.clear();
 ```
 
 ### 3. Drag-and-drop uploading:
