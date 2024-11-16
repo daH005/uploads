@@ -17,6 +17,8 @@ https://github.com/user-attachments/assets/55ea911c-ac1e-4872-814a-993bc4356160
 2. Execute `tsc`  (`tsc` can be installed using `npm install -g typescript`):
 2. Use the prepared scripts in HTML
 
+Or download the release you need.
+
 ## Usage
 ### 1. Uploading in parts without overwriting files with an each new selection:
 HTML:
