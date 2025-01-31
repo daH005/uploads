@@ -99,7 +99,7 @@ abstract class AbstractInputFilesMapper {
 
     protected abstract _deleteFile(filename: string): void;
 
-    protected addServerFile(filename: string, url: string): void {
+    public addServerFile(filename: string, url: string): void {
         this._addFileEl(filename, url, true);
         this._serverFilenames.add(filename);
     }
